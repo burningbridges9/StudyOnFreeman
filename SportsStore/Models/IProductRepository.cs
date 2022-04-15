@@ -3,16 +3,9 @@
     public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
-    }
+        void SaveProduct(Product product);
 
-    public class FakeProductRepository : IProductRepository
-    {
-        public IQueryable<Product> Products => new List<Product> 
-        {
-            new Product { Name = "Football", Price = 25 },
-            new Product { Name = "Surf board", Price = 179 },
-            new Product { Name = "Running shoes", Price = 95 }
-        }.AsQueryable();
+        Product DeleteProduct(int productId);
     }
 
     public class EFProductRepository : IProductRepository
@@ -23,5 +16,38 @@
             context = ctx;
         }
         public IQueryable<Product> Products => context.Products;
+
+        public Product DeleteProduct(int productId)
+        {
+            Product dbEntry = context.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (dbEntry != null)
+            {
+                context.Products.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+
+        public void SaveProduct(Product product)
+        {
+            if (product.ProductId == 0)
+            {
+                context.Products.Add(product);
+            }
+            else
+            {
+                Product dbEntry = context.Products.SingleOrDefault(p => p.ProductId == product.ProductId);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = product.Name;
+                    dbEntry.Description = product.Description;
+                    dbEntry.Price = product.Price;
+                    dbEntry.Category = product.Category;
+                }
+            }
+            context.SaveChanges();
+        }
     }
+
 }
