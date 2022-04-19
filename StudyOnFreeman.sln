@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore", "SportsStore\SportsStore.csproj", "{79F98B76-EBC9-4C0A-AF59-0898CF78B993}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingUrlRouting", "UsingUrlRouting\UsingUrlRouting.csproj", "{D7E81871-85D3-44EA-ACE2-EB1C070B0F79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiControllers", "ApiControllers\ApiControllers.csproj", "{D9421249-8149-4228-A85B-279A20BE873D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{79F98B76-EBC9-4C0A-AF59-0898CF78B993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79F98B76-EBC9-4C0A-AF59-0898CF78B993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79F98B76-EBC9-4C0A-AF59-0898CF78B993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E81871-85D3-44EA-ACE2-EB1C070B0F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E81871-85D3-44EA-ACE2-EB1C070B0F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E81871-85D3-44EA-ACE2-EB1C070B0F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E81871-85D3-44EA-ACE2-EB1C070B0F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9421249-8149-4228-A85B-279A20BE873D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9421249-8149-4228-A85B-279A20BE873D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9421249-8149-4228-A85B-279A20BE873D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9421249-8149-4228-A85B-279A20BE873D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

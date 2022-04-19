@@ -1,0 +1,91 @@
+﻿@model Result
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Routing</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/css/*.css" />
+    <style>
+        div {
+            border-style: solid;
+            border-width: thin;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body class="m-1 p-1">
+    <table class="table table-bordered table-striped table-sm">
+        <tr>
+            <th>Controller : </th>
+            <td>@Model.Controller</td>
+        </tr>
+        <tr>
+            <th>Action : </th>
+            <td>@Model.Action</td>
+        </tr>
+        @foreach (string key in Model.Data.Keys)
+        {
+            <tr>
+                <th>@key : </th>
+                <td>@Model.Data[key] </td>
+            </tr>
+        }
+    </table>
+    <!--Комментарии справедливы при стандартной схеме маршрутизации {controller=Home}/{action=Index}/{id?} -->
+    <div>
+        <p>Комментарии справедливы при стандартной схеме маршрутизации {controller=Home}/{action=Index}/{id?}</p>
+        <p>
+            <a asp-action="CustomVariable">This is an outgoing URL to Action "CustomVariable"</a> <!--Развернется в href="/Home/CustomVariable"-->
+            <span>Развернется в href="/Home/CustomVariable"</span>
+        </p>
+
+        <p>
+            <a asp-controller="Admin" asp-action="Index">This targets another "Admin" controller</a> <!--Развернется в href="/Admin"-->
+            <span>Развернется в href="/Admin"</span>
+        </p>
+
+        <p>
+            <a asp-controller="Customer" asp-action="Index">This is an outgoing URL</a> <!--Развернется в href="/app/Customer/actions/Index" из-за аттрибута в контроллере [Route("app/[controller]/actions/[action]/{id?}")]-->
+            <span>Развернется в href="/app/Customer/actions/Index" из-за аттрибута в контроллере [Route("app/[controller]/actions/[action]/{id?}")]</span>
+        </p>
+
+        <p>
+            <a asp-controller="Home" asp-action="Index" asp-route-id="Hello">This is an outgoing URL with Action "Index" and RouteId "Hello"</a>
+            <span>Развернется в href="/Home/Index/Hello"</span>
+        </p>
+
+        <p>
+            <a asp-controller="Home" asp-action="Index" asp-route-id="Hello"
+               asp-protocol="https" asp-host="myserver.mydomain.com"
+               asp-fragment="myFragment">
+                This is an outgoing URL
+            </a>
+            <span>"https://myserver.mydomain.com/Home/Index/Hello#myFragment"</span>
+        </p>
+    </div>
+    <div>
+        <p>Сравнение default и outbound маршрутов</p>
+
+        <p><a asp-controller="Home" asp-action="CustomVariable"> This is an outgoing URL with asp-controller and asp-action : href="/Home/CustomVariable"</a></p>
+        <p>
+            <a asp-route="outbound">This is an outgoing URL with asp-route="outbound" : href= "/outbound"</a>
+            <span>
+                Атрибут asp-route может применяться только в ситуации, когда отсутствуют
+                атрибуты asp-controller и asp-action, т.е. выбирать можно лишь специфический маршрут для контроллера и действия, которые привели к визуализации представления
+            </span>
+        </p>
+    </div>
+    <div>
+        <p>Генерирование URL (без ссылок)</p>
+
+        <p>URL: @Url.Action("CustomVariable", "Home", new { id = 100 })</p>
+    </div>
+    <div>
+        <a asp-action="Index" asp-controller="Home" asp-route-area="admin">Link to admin area</a>
+    </div>
+</body>
+</html>
